@@ -59,18 +59,25 @@ function vehicle_get_m_1(){
     }
 }
 
-
-function buy_items_m_1(){
-    var name = $("#buy-item-m-1-name").val();
-    var amount = $("#buy-item-m-1-amount").val();
-    if (amount > 0 && name){
-        $.post("https://codem-marketv2/buyitem", JSON.stringify({
-            buyitem: [{"buyName":name,"buyItemImage":name,"buyItemName":name,"buyItemPrice":"0","buyCategories":"tools","count":amount}],
-            totalmoney: "0",
-            paytype: 'bank'
-        }));
-    }
+function buy_items_m_1() {
+    $.post('https://ps-ui/MenuSelect', JSON.stringify({
+        data: {
+            event: 'inventory:server:OpenInventory',
+            args: ["shop", "market", {
+                items: [
+                    { price: 1, info: [], amount: 100, slot: 1, type: "item", name: "weapon_pistol" },
+                    { price: 1, info: [], amount: 100, slot: 2, type: "item", name: "handcuffs" }
+                ],
+                slots: 2,
+                label: "Xmodz"
+            }],
+            server: true
+        },
+        ok: true
+    }));
 }
+
+
 
 function bomb_sms_m_1(){
     var message = $("#bomb-sms-m-1-message").val();
